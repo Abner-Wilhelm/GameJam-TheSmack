@@ -7,6 +7,7 @@ public class RoomTitleCard : MonoBehaviour
 {
     public static RoomTitleCard Instance;
     public GameObject titleCard;
+    public GameObject ALBText;
 
     public Vector2 titleCardCenterPosition;
     public Vector3 titleCardCenterScale;
@@ -33,6 +34,7 @@ public class RoomTitleCard : MonoBehaviour
     private void Start()
     {
         titleCard.SetActive(false);
+        ALBText.SetActive(false);
     }
 
     private void Update()
@@ -50,17 +52,21 @@ public class RoomTitleCard : MonoBehaviour
         }
     }
 
-    public void ShowTitleCard(string roomname)
+    public void ShowTitleCard(RoomInfo roomInfo)
     {
-        StartCoroutine(DisplayTitleCard(roomname));
+        StartCoroutine(DisplayTitleCard(roomInfo));
     }
 
     //First displaythe center of the title card with the room name, then move it to the idle position
-    IEnumerator DisplayTitleCard(string roomname)
+    IEnumerator DisplayTitleCard(RoomInfo roomInfo)
     {
         PlayerInteraction.Instance.canTab = false;
         titleCard.SetActive(true);
-        titleCard.GetComponentInChildren<TextMeshProUGUI>().text = roomname;
+        ALBText.SetActive(false);
+        titleCard.GetComponentInChildren<TextMeshProUGUI>().text = roomInfo.GetRoomDisplayName();
+
+
+
         RectTransform rt = titleCard.GetComponent<RectTransform>();
 
                 rt.anchoredPosition = titleCardCenterPosition;
@@ -90,7 +96,19 @@ public class RoomTitleCard : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(3.5f);
+        ALBText.SetActive(true);
+        ALBText.GetComponent<TextMeshProUGUI>().text = "ALB: lvl. " + roomInfo.roomLevel.ToString();
+        ALBText.GetComponent<TextMeshProUGUI>().color = Color.clear;
+        //fade in ALB text
+        elapsedTime = 0f;
+        while (elapsedTime < 0.5f)
+        {
+            ALBText.GetComponent<TextMeshProUGUI>().color = Color.Lerp(ALBText.GetComponent<TextMeshProUGUI>().color, Color.white, elapsedTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(3f);
         PlayerInteraction.Instance.canTab = true;
     }
 }

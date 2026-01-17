@@ -58,7 +58,7 @@ public class ClipboardController : MonoBehaviour
 
     public IEnumerator lookAtClipBoard(string ruletoAdd)
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         float elapsedTime = 0f;
         float duration = 0.75f;
         Vector3 startingPos = clipboard.transform.position;

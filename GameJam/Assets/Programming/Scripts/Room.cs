@@ -32,7 +32,7 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        RoomTitleCard.Instance.ShowTitleCard(roomInfo.GetRoomDisplayName());
+        RoomTitleCard.Instance.ShowTitleCard(roomInfo);
         roomInfo.AddRule();
         GetComponent<BoxCollider>().enabled = false;
     }
