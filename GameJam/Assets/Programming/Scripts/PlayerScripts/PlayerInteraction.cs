@@ -3,25 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-interface IInteractable
-{
-    /// <summary>
-    /// Method for item interaction
-    /// </summary>
-    /// <param name="input">0 is left mouse button, 1 is right mouse button</param>
-    public void Interact(int input = PlayerInteraction.LEFT_MOUSE_INPUT);
-}
 public class PlayerInteraction : MonoBehaviour
 {
     public const int LEFT_MOUSE_INPUT = 0;
     public const int RIGHT_MOUSE_INPUT = 1;
 
-
+    public RoomEntity lastLookedAtObj;
 
     public float interactDistance = 3f;
-    /*void Update()
+    void Update()
     {
-        if (UIManager.Instance.restrictPlayerMovement) return;
+
 
         Ray ray = new Ray(transform.position, transform.forward); // on Camera
         RaycastHit hit;
@@ -29,18 +21,14 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out hit, interactDistance))
         {
 
-            if (hit.collider.TryGetComponent(out Food food))
+            if (hit.collider.TryGetComponent(out RoomEntity entity))
             {
+                entity.ShowLevelDisplay(true);
 
-                food.foodCanvas.UpdateFoodDisplay(food.foodData);
-                food.foodCanvas.DisplayFoodUI(true);
+                if (lastLookedAtObj && lastLookedAtObj != entity)
+                    lastLookedAtObj.ShowLevelDisplay(false);
 
-
-                if (lastLookedAtFood && lastLookedAtFood != food)
-                    lastLookedAtFood.foodCanvas.DisplayFoodUI(false);
-
-                lastLookedAtFood = food;
-
+                lastLookedAtObj = entity;
 
                 if (Input.GetKeyDown(KeyCode.Mouse0) && hit.collider.TryGetComponent(out IInteractable i0))
                     i0.Interact(PlayerInteraction.LEFT_MOUSE_INPUT);
@@ -49,11 +37,11 @@ public class PlayerInteraction : MonoBehaviour
             }
             else
             {
-              
-                if (lastLookedAtFood)
+
+                if (lastLookedAtObj)
                 {
-                    lastLookedAtFood.foodCanvas.DisplayFoodUI(false);
-                    lastLookedAtFood = null;
+                    lastLookedAtObj.ShowLevelDisplay(false);
+                    lastLookedAtObj = null;
                 }
 
                 if (Input.GetKeyDown(KeyCode.Mouse0) && hit.collider.TryGetComponent(out IInteractable i0))
@@ -65,11 +53,7 @@ public class PlayerInteraction : MonoBehaviour
         else
         {
 
-            if (lastLookedAtFood)
-            {
-                lastLookedAtFood.foodCanvas.DisplayFoodUI(false);
-                lastLookedAtFood = null;
-            }
+
         }
-    }*/
+    }
 }
