@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2815c65ff32090d47b50c9c74c0c8342, type: 3}
-  m_Name: RuleObject
+  m_Name: FollowingRules
   m_EditorClassIdentifier: 
   ruleType: 0

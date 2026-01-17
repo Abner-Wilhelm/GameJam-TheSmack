@@ -22,7 +22,7 @@ public class RoomEntity : MonoBehaviour, IInteractable
         {
             hasBeenInteractedWith = true;
             ChangeMaterialOutline();
-            if (ruleObject.ruleType == RuleObject.RuleType.FollowingRules)
+            if (ruleObject.IsFollowingRules())
             {
                 Debug.Log("Confetti! You followed the rules!");
                 
@@ -36,7 +36,7 @@ public class RoomEntity : MonoBehaviour, IInteractable
         {
             hasBeenInteractedWith = true;
             ChangeMaterialOutline();
-            if (ruleObject.ruleType == RuleObject.RuleType.BreakingRules)
+            if (!ruleObject.IsFollowingRules())
             {
                 Debug.Log("Confetti! You followed the rules!");
             }
