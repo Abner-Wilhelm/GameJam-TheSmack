@@ -9,8 +9,9 @@ public class RoomEntity : MonoBehaviour, IInteractable
     public RuleObject ruleObject;
     public GameObject levelDisplay;
 
-    public Color highlightColor = Color.yellow;
-    public Color interactedColor = Color.black;
+    public Color highlightColor = Color.green;
+    public Color notInteractedColor = Color.yellow;
+    public Color normalOutline = Color.black;
 
     public bool hasBeenInteractedWith = false;
 
@@ -53,14 +54,28 @@ public class RoomEntity : MonoBehaviour, IInteractable
 
         if(hasBeenInteractedWith)
         {
-            mat.SetColor("_OutlineColor", interactedColor);
+            mat.SetColor("_OutlineColor", normalOutline);
         }
         else
         {
-            mat.SetColor("_OutlineColor", highlightColor);
+            mat.SetColor("_OutlineColor", notInteractedColor);
         }
 
         myRoom?.IsCleared();
+    }
+
+    public void isBeingLookedAt(bool isBeingLookedAt)
+    {
+        if (hasBeenInteractedWith) return;
+        Material mat = GetComponent<Renderer>().material;
+        if (isBeingLookedAt && mat != null)
+        {
+            mat.SetColor("_OutlineColor", highlightColor);
+        }
+        else
+        {
+            ChangeMaterialOutline();
+        }
     }
 
     private void Start()
