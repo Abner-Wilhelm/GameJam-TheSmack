@@ -9,6 +9,7 @@ public class RoomInfo : ScriptableObject
     public int roomLevel;
     public string ruleToAdd;
     public RuleBreakCondition ruleCondition;
+    public RuleBreakException ruleException;
 
     public string GetRoomDisplayName()
     {
@@ -19,8 +20,9 @@ public class RoomInfo : ScriptableObject
     {
         if (!string.IsNullOrEmpty(ruleToAdd))
         {
-            RuleManager.Instance.AddToClipboardRules(ruleToAdd);
-            RuleManager.Instance.AddRuleCondition(ruleCondition);
+            ClipboardController.Instance.StartCoroutine(ClipboardController.Instance.lookAtClipBoard(ruleToAdd));
+            if (ruleCondition) RuleManager.Instance.AddRuleCondition(ruleCondition);
+            if(ruleException) RuleManager.Instance.AddRuleException(ruleException);
         }
     }
 }

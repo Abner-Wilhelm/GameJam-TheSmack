@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class RuleManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class RuleManager : MonoBehaviour
     private AudioSource audioSource;
 
     private List<RuleBreakCondition> activeRuleConditions = new List<RuleBreakCondition>();
+    private List<RuleBreakException> activeRuleExceptions = new List<RuleBreakException>();
 
     private void Awake()
     {
@@ -55,7 +57,7 @@ public class RuleManager : MonoBehaviour
         }
     }
 
-    // Returns true if none of the ruleConditions are in activeRuleConditions
+    //Returns true if all conditions are met, false if any condition is broken
     internal bool CompareRuleConditions(List<RuleBreakCondition> ruleConditions)
     {
        if(ruleConditions == null || ruleConditions.Count == 0)
@@ -64,11 +66,20 @@ public class RuleManager : MonoBehaviour
         }
         foreach(var condition in ruleConditions)
         {
-            if(activeRuleConditions.Contains(condition))
+            foreach(var exception in condition.possibleExceptions)
             {
-                return false;
+                if(activeRuleConditions.Contains(condition) && !activeRuleExceptions.Contains(exception))
+                {
+                    return false;
+                }
             }
+            
         }
         return true;
+    }
+
+    internal void AddRuleException(RuleBreakException ruleException)
+    {
+        activeRuleExceptions.Add(ruleException);
     }
 }
