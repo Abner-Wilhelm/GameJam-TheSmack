@@ -31,7 +31,7 @@ public class ClipboardController : MonoBehaviour
     }
     private void Update()
     {
-        if (coroutineRunning) return;
+        if (PlayerInteraction.Instance.canTab == false) return;
         //Head bobbing effect
         if (rb != null)
         {
@@ -58,7 +58,7 @@ public class ClipboardController : MonoBehaviour
 
     public IEnumerator lookAtClipBoard(string ruletoAdd)
     {
-        coroutineRunning = true;
+        yield return new WaitForSeconds(2.5f);
         float elapsedTime = 0f;
         float duration = 0.75f;
         Vector3 startingPos = clipboard.transform.position;
@@ -93,6 +93,5 @@ public class ClipboardController : MonoBehaviour
         }
         clipboard.transform.position = clipboardIdle.position;
         clipboard.transform.rotation = clipboardIdle.rotation;
-        coroutineRunning = false;
     }
 }

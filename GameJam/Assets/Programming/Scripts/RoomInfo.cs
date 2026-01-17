@@ -13,7 +13,7 @@ public class RoomInfo : ScriptableObject
 
     public string GetRoomDisplayName()
     {
-       return ("Level " + roomLevel + ": " + roomName);
+        return roomName;
     }
 
     public void AddRule()

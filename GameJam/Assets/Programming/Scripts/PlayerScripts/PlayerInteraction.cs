@@ -15,6 +15,21 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject approvedSprite;
     public GameObject deniedSprite;
 
+    public static PlayerInteraction Instance;
+    public bool canTab = true;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     public float interactDistance = 3f;
     void Update()
     {
