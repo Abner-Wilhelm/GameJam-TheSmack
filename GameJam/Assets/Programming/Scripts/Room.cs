@@ -5,6 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] private RoomEntity[] roomEntities;
+    public RoomInfo roomInfo;
 
     private void Start()
     {
@@ -27,5 +28,11 @@ public class Room : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        roomInfo.AddRule();
+        GetComponent<BoxCollider>().enabled = false;
     }
 }

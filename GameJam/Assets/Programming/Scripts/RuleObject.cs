@@ -5,11 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RuleObject", menuName = "ScriptableObjs/RuleObject", order = 1)]
 public class RuleObject : ScriptableObject
 {
-    public enum RuleType
+    public bool IsFollowingRules()
     {
-        FollowingRules,
-        BreakingRules
+        return RuleManager.Instance.CompareRuleConditions(ruleConditions); //Returns true if none of the ruleConditions are in activeRuleConditions
     }
-
-    public RuleType ruleType;
+    public List<RuleBreakCondition> ruleConditions;
 }
+
+/*public enum RuleBreakCondition
+{
+    UnprofessionalBehavior,
+    UnrealmlyItem,
+    BrokenItem,
+    NotProperLevel
+}
+*/
+

@@ -70,7 +70,7 @@ public class PlayerInteraction : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.Mouse1) && hit.collider.TryGetComponent(out IInteractable i1))
                 {
                     if (!entity.hasBeenInteractedWith)
-                        SpawnSprite(this.transform.position, this.transform.forward, PlayerInteraction.RIGHT_MOUSE_INPUT);
+                        SpawnSprite(hit.transform.position, hit.transform.forward, PlayerInteraction.RIGHT_MOUSE_INPUT);
                     i1.Interact(PlayerInteraction.RIGHT_MOUSE_INPUT);
                    
                 }
