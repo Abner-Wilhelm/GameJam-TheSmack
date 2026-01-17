@@ -14,6 +14,8 @@ public class RoomEntity : MonoBehaviour, IInteractable
 
     public bool hasBeenInteractedWith = false;
 
+    public Room myRoom;
+
     public void Interact(int inputType)
     {
         if(inputType == PlayerInteraction.LEFT_MOUSE_INPUT)
@@ -58,7 +60,7 @@ public class RoomEntity : MonoBehaviour, IInteractable
             mat.SetColor("_OutlineColor", highlightColor);
         }
 
-
+        myRoom?.IsCleared();
     }
 
     private void Start()
@@ -70,5 +72,10 @@ public class RoomEntity : MonoBehaviour, IInteractable
     public void ShowLevelDisplay(bool show)
     {
         if(levelDisplay) levelDisplay.SetActive(show);
+    }
+
+    internal void Initialize(Room room)
+    {
+        myRoom = room;
     }
 }
