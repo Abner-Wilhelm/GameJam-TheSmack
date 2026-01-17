@@ -60,7 +60,7 @@ public class ClipboardController : MonoBehaviour
     {
         coroutineRunning = true;
         float elapsedTime = 0f;
-        float duration = 0.5f;
+        float duration = 0.75f;
         Vector3 startingPos = clipboard.transform.position;
         Quaternion startingRot = clipboard.transform.rotation;
         while (elapsedTime < duration)
@@ -81,7 +81,7 @@ public class ClipboardController : MonoBehaviour
     IEnumerator returnToIdle()
     {
         float elapsedTime = 0f;
-        float duration = 0.5f;
+        float duration = 0.75f;
         Vector3 startingPos = clipboard.transform.position;
         Quaternion startingRot = clipboard.transform.rotation;
         while (elapsedTime < duration)
