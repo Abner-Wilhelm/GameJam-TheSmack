@@ -38,9 +38,6 @@ public class MainMenuManager : MonoBehaviour
         mainMenuCamera.Priority = 0;
         mainMenuUI.SetActive(false);
 
-        //left door -1 in the x direction
-        //right door +1 in the x direction
-
         float elapsedTime = 0f;
         float duration = 2f;
         while (elapsedTime < duration)
@@ -52,5 +49,7 @@ public class MainMenuManager : MonoBehaviour
             yield return null;
         }
 
+        elevatorButtons.isFlashing = false;
+        numberPlateController.elevatorStopped = true;
     }
 }
