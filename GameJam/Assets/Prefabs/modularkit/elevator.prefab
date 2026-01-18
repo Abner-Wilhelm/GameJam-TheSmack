@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderers: []
-  flashMaterial: {fileID: 2100000, guid: 3eae76beb6a84f34ea3c65cbb6d58c2b, type: 2}
-  baseMaterial: {fileID: 2100000, guid: f533ec51189f43f45895dcc640495f06, type: 2}
+  flashMaterial: {fileID: 2100000, guid: 3cc420c88b5a3854786626db95a7b28a, type: 2}
+  baseMaterial: {fileID: 2100000, guid: 9fd242594fbcefc4d9be1c90b1455fae, type: 2}
   isFlashing: 1
   timer: 0
