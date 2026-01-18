@@ -42,17 +42,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 07709b724546f5748bc146302c68e6e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 73.700005
+      value: 36.063477
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07709b724546f5748bc146302c68e6e1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07709b724546f5748bc146302c68e6e1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.9000006
+      value: -71.43896
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07709b724546f5748bc146302c68e6e1,
         type: 3}
@@ -93,7 +93,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0d1329ece432d1b459fb5f3a15587467, type: 2}
+      objectReference: {fileID: 2100000, guid: c704c20bf6982b94598d745442dd5bda, type: 2}
     - target: {fileID: -3612819227363422732, guid: 07709b724546f5748bc146302c68e6e1,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -153,6 +153,7 @@ MonoBehaviour:
   teleportTransform: {fileID: 990739186831149303}
   useFadeTransition: 1
   fadeDuration: 0.5
+  targetRoomInfo: {fileID: 0}
 --- !u!65 &3647811979908029136
 BoxCollider:
   m_ObjectHideFlags: 0
