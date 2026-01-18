@@ -12,8 +12,8 @@ public class RuleManager : MonoBehaviour
     private int ruleIndex = 1;
     private AudioSource audioSource;
 
-    private List<RuleBreakCondition> activeRuleConditions = new List<RuleBreakCondition>();
-    private List<RuleBreakException> activeRuleExceptions = new List<RuleBreakException>();
+    public List<RuleBreakCondition> activeRuleConditions = new List<RuleBreakCondition>();
+    public List<RuleBreakException> activeRuleExceptions = new List<RuleBreakException>();
 
     private void Awake()
     {
@@ -66,11 +66,28 @@ public class RuleManager : MonoBehaviour
         }
         foreach(var condition in ruleConditions)
         {
-            foreach(var exception in condition.possibleExceptions)
+            if (activeRuleExceptions.Count == 0)
             {
-                if(activeRuleConditions.Contains(condition) && !activeRuleExceptions.Contains(exception))
+                if (activeRuleConditions.Contains(condition))
+                { return false; }
+            }
+
+            else
+            {
+                foreach (var exception in condition.possibleExceptions)
                 {
-                    return false;
+                    if (exception != null)
+                    {
+                        if (activeRuleConditions.Contains(condition) && !activeRuleExceptions.Contains(exception))
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if (activeRuleConditions.Contains(condition))
+                        { return false; }
+                    }
                 }
             }
             

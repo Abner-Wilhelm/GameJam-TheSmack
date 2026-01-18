@@ -17,20 +17,36 @@ public class RoomEntity : MonoBehaviour, IInteractable
 
     public Room myRoom;
 
+    public bool overrideMaterial = false;
+    public int overrideMaterialIndex = -1;
+
+    public virtual void Choice(bool isCorrectChoice)
+    {
+        if (isCorrectChoice)
+        {
+            Debug.Log("Confetti! You followed the rules!");
+        }
+        else
+        {
+            Debug.Log("BOOOOOOOOOOOOOO");
+        }
+    }
+
     public void Interact(int inputType)
     {
-        if(inputType == PlayerInteraction.LEFT_MOUSE_INPUT)
+        if (hasBeenInteractedWith) return;
+        if (inputType == PlayerInteraction.LEFT_MOUSE_INPUT)
         {
             hasBeenInteractedWith = true;
             ChangeMaterialOutline();
             if (ruleObject.IsFollowingRules())
             {
-                Debug.Log("Confetti! You followed the rules!");
+                Choice(true);
                 
             }
             else
             {
-                Debug.Log("BOOOOOM");
+                Choice(false);
             }
         }
         else if(inputType == PlayerInteraction.RIGHT_MOUSE_INPUT)
@@ -39,18 +55,26 @@ public class RoomEntity : MonoBehaviour, IInteractable
             ChangeMaterialOutline();
             if (!ruleObject.IsFollowingRules())
             {
-                Debug.Log("Confetti! You followed the rules!");
+                Choice(true);
             }
             else
             {
-                Debug.Log("BOOOOOM");
+                Choice(false);
             }
         }
     }
 
-    private void ChangeMaterialOutline()
+    public void ChangeMaterialOutline()
     {
-        Material mat = GetComponent<Renderer>().material;
+        Material mat;
+        if (overrideMaterial)
+        {
+            mat = GetComponent<Renderer>().materials[overrideMaterialIndex];
+        }
+        else
+        {
+            mat = GetComponent<Renderer>().material;
+        }
 
         if(hasBeenInteractedWith)
         {
@@ -64,10 +88,18 @@ public class RoomEntity : MonoBehaviour, IInteractable
         myRoom?.IsCleared();
     }
 
-    public void isBeingLookedAt(bool isBeingLookedAt)
+    public virtual void isBeingLookedAt(bool isBeingLookedAt)
     {
         if (hasBeenInteractedWith) return;
-        Material mat = GetComponent<Renderer>().material;
+        Material mat;
+        if (!overrideMaterial)
+        {
+            mat = GetComponent<Renderer>().material;
+        }
+        else
+        {
+            mat = GetComponent<Renderer>().materials[overrideMaterialIndex];
+        }
         if (isBeingLookedAt && mat != null)
         {
             mat.SetColor("_OutlineColor", highlightColor);
