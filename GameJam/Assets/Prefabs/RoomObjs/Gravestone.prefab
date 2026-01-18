@@ -100,7 +100,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 709b9d0208e13994da378d3890128c3c, type: 2}
+      objectReference: {fileID: 2100000, guid: 8d79d1d395dcbee4993d56fd060cc203, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -149,7 +149,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4021321558328844685, guid: 900476063a2473e42bdd4fbb238f1639, type: 3}
 --- !u!114 &1015390659901238011
@@ -177,7 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1e71fde9100d34d8b501fe20ec7763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ruleObject: []
+  ruleObject:
+  - {fileID: 11400000, guid: 7431a20e6e8fefe429e8c231f37f916d, type: 2}
   levelDisplay: {fileID: 7110116436297348928}
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   notInteractedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

@@ -97,10 +97,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4362962105363994262, guid: 5e4ff8e3823469c4ebbd89e52eab84a3, type: 3}
-  - {fileID: -8896051167825165466, guid: 5e4ff8e3823469c4ebbd89e52eab84a3, type: 3}
-  - {fileID: 5561349426305759274, guid: 5e4ff8e3823469c4ebbd89e52eab84a3, type: 3}
-  - {fileID: 1833810152192036645, guid: 5e4ff8e3823469c4ebbd89e52eab84a3, type: 3}
+  - {fileID: 2100000, guid: 9fd242594fbcefc4d9be1c90b1455fae, type: 2}
+  - {fileID: 2100000, guid: 8e69955fb6e30ac4699a6e196faacc96, type: 2}
+  - {fileID: 2100000, guid: 3eae76beb6a84f34ea3c65cbb6d58c2b, type: 2}
+  - {fileID: 2100000, guid: 3cc420c88b5a3854786626db95a7b28a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,15 +147,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1e71fde9100d34d8b501fe20ec7763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ruleObject: []
+  ruleObject:
+  - {fileID: 11400000, guid: 901c22eaa28b23849a88b21b3669787e, type: 2}
   levelDisplay: {fileID: 8239130653474783510}
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   notInteractedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   normalOutline: {r: 0, g: 0, b: 0, a: 1}
   hasBeenInteractedWith: 0
   myRoom: {fileID: 0}
-  overrideMaterial: 0
-  overrideMaterialIndex: -1
+  overrideMaterial: 1
+  overrideMaterialIndex: 3
 --- !u!64 &1188730101488247282
 MeshCollider:
   m_ObjectHideFlags: 0

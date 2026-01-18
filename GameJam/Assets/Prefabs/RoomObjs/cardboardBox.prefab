@@ -113,15 +113,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1e71fde9100d34d8b501fe20ec7763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ruleObject: []
+  ruleObject:
+  - {fileID: 11400000, guid: 901c22eaa28b23849a88b21b3669787e, type: 2}
   levelDisplay: {fileID: 3256549252106480171}
   highlightColor: {r: 0, g: 1, b: 0, a: 1}
   notInteractedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   normalOutline: {r: 0, g: 0, b: 0, a: 1}
   hasBeenInteractedWith: 0
   myRoom: {fileID: 0}
-  overrideMaterial: 0
-  overrideMaterialIndex: -1
+  overrideMaterial: 1
+  overrideMaterialIndex: 1
 --- !u!64 &1458346849675136384
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -69,5 +69,7 @@ public class MainMenuManager : MonoBehaviour
 
         elevatorButtons.isFlashing = false;
         numberPlateController.elevatorStopped = true;
+        MinimapEnlarger.Instance.minimapObj.SetActive(true);
+        
     }
 }
