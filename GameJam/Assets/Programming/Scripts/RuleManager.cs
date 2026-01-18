@@ -9,7 +9,7 @@ public class RuleManager : MonoBehaviour
 {
     public static RuleManager Instance;
     public TextMeshProUGUI clipboardText;
-    private int ruleIndex = 1;
+    private int ruleIndex = 4;
     private AudioSource audioSource;
 
     public List<RuleBreakCondition> activeRuleConditions = new List<RuleBreakCondition>();
@@ -31,7 +31,7 @@ public class RuleManager : MonoBehaviour
 
     private void Start()
     {
-        clipboardText.text = "Rules to follow:\n";
+        clipboardText.text = "Rules to follow:\n1. All entities must display an accurate ALB (Adventurer Level Balance)\n2. Objects must appear to be of this realm\n3. Dungeon staff must be professional\n";
         audioSource = GetComponent<AudioSource>();
     }
 

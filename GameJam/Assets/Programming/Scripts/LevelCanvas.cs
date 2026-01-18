@@ -5,5 +5,6 @@ using UnityEngine;
 
 public class LevelCanvas : MonoBehaviour
 {
-    public TextMeshProUGUI TextMeshProUGUI;
+    public TextMeshProUGUI ObjectName;
+    public TextMeshProUGUI Level;
 }

@@ -34,6 +34,7 @@ public class Room : MonoBehaviour
     {
         RoomTitleCard.Instance.ShowTitleCard(roomInfo);
         roomInfo.AddRule();
+        ClipboardController.Instance.StartCoroutine(ClipboardController.Instance.LookAtClipBoardWithoutAddingText());
         GetComponent<BoxCollider>().enabled = false;
     }
 

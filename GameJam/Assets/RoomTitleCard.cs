@@ -108,7 +108,7 @@ public class RoomTitleCard : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(3f);
-        PlayerInteraction.Instance.canTab = true;
+        if(!ClipboardController.Instance.coroutineRunning) PlayerInteraction.Instance.canTab = true;
+
     }
 }

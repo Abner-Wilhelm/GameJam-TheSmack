@@ -17,6 +17,22 @@ public class MinimapEnlarger : MonoBehaviour
     private float originalOrthographicSize;
     public float enlargedOrthographicSize = 30f;
 
+    public GameObject minimapObj;
+
+    public static MinimapEnlarger Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     [Range(0.01f, 1f)]
     public float lerpSpeed = 0.1f;
 

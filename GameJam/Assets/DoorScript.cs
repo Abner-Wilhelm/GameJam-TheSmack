@@ -18,6 +18,8 @@ public class DoorScript : MonoBehaviour, IInteractable
     private PlayerMovement playerMovement; // Reference to the player's movement script
     private PlayerCam playerCam; // Reference to the player's camera script
 
+    public RoomInfo targetRoomInfo;
+
     private void Start()
     {
         // Cache references to the player components
@@ -43,6 +45,7 @@ public class DoorScript : MonoBehaviour, IInteractable
         isTeleporting = true;
 
         FadeToBlackManager.Instance.FadeToBlack(true, 0.5f);
+        MinimapEnlarger.Instance.minimapObj.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         TransitionCutscene.Instance.PlayCutscene();
         playerCam.GetComponent<CinemachineVirtualCamera>().Priority = 0;
@@ -86,7 +89,11 @@ public class DoorScript : MonoBehaviour, IInteractable
         {
             FadeToBlackManager.Instance.FadeToBlack(false, fadeDuration);
             yield return new WaitForSeconds(fadeDuration);
+            MinimapEnlarger.Instance.minimapObj.SetActive(true);
         }
+
+        RoomTitleCard.Instance.ShowTitleCard(targetRoomInfo);
+        targetRoomInfo.AddRule();
 
         isTeleporting = false;
     }

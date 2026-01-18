@@ -10,7 +10,7 @@ public class ClipboardController : MonoBehaviour
     public Transform clipboardIdle;
     public Transform clipboardLookAt;
 
-    private bool coroutineRunning = false;
+    public bool coroutineRunning = false;
 
     private Rigidbody rb;
 
@@ -58,13 +58,17 @@ public class ClipboardController : MonoBehaviour
 
     public IEnumerator lookAtClipBoard(string ruletoAdd)
     {
+        coroutineRunning = true;
+        PlayerInteraction.Instance.canTab = false;
         yield return new WaitForSeconds(2f);
+        PlayerInteraction.Instance.canTab = false;
         float elapsedTime = 0f;
         float duration = 0.75f;
         Vector3 startingPos = clipboard.transform.position;
         Quaternion startingRot = clipboard.transform.rotation;
         while (elapsedTime < duration)
         {
+            PlayerInteraction.Instance.canTab = false;
             clipboard.transform.position = Vector3.Lerp(clipboard.transform.position, clipboardLookAt.position, (elapsedTime / duration));
             clipboard.transform.rotation = Quaternion.Slerp(clipboard.transform.rotation, clipboardLookAt.rotation, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
@@ -74,7 +78,34 @@ public class ClipboardController : MonoBehaviour
         clipboard.transform.rotation = clipboardLookAt.rotation;
 
         RuleManager.Instance.AddToClipboardRules(ruletoAdd);
+        PlayerInteraction.Instance.canTab = false;
+        yield return new WaitForSeconds(3f);
+        PlayerInteraction.Instance.canTab = false;
+        StartCoroutine(returnToIdle());
+    }
+
+    public IEnumerator LookAtClipBoardWithoutAddingText()
+    {
+        coroutineRunning = true;
+        PlayerInteraction.Instance.canTab = false;
         yield return new WaitForSeconds(2f);
+        PlayerInteraction.Instance.canTab = false;
+        float elapsedTime = 0f;
+        float duration = 0.75f;
+        Vector3 startingPos = clipboard.transform.position;
+        Quaternion startingRot = clipboard.transform.rotation;
+        while (elapsedTime < duration)
+        {
+            PlayerInteraction.Instance.canTab = false;
+            clipboard.transform.position = Vector3.Lerp(clipboard.transform.position, clipboardLookAt.position, (elapsedTime / duration));
+            clipboard.transform.rotation = Quaternion.Slerp(clipboard.transform.rotation, clipboardLookAt.rotation, (elapsedTime / duration));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        clipboard.transform.position = clipboardLookAt.position;
+        clipboard.transform.rotation = clipboardLookAt.rotation;
+        yield return new WaitForSeconds(3f);
+        PlayerInteraction.Instance.canTab = false;
         StartCoroutine(returnToIdle());
     }
 
@@ -86,6 +117,7 @@ public class ClipboardController : MonoBehaviour
         Quaternion startingRot = clipboard.transform.rotation;
         while (elapsedTime < duration)
         {
+            PlayerInteraction.Instance.canTab = false;
             clipboard.transform.position = Vector3.Lerp(clipboard.transform.position, clipboardIdle.position, (elapsedTime / duration));
             clipboard.transform.rotation = Quaternion.Slerp(clipboard.transform.rotation, clipboardIdle.rotation, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
@@ -93,6 +125,8 @@ public class ClipboardController : MonoBehaviour
         }
         clipboard.transform.position = clipboardIdle.position;
         clipboard.transform.rotation = clipboardIdle.rotation;
+        coroutineRunning = false;
+        PlayerInteraction.Instance.canTab = true;
     }
 
     public void TeleportPlayer(Transform teleportTransform)
