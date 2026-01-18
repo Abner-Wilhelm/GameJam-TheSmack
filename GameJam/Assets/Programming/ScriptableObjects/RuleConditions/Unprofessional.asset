@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35de72fef3164ad4494d6b587f3d0214, type: 3}
-  m_Name: Unprofessionality
+  m_Name: Unprofessional
   m_EditorClassIdentifier: 
   ruleName: Unprofessionality
   ruleConditionType: 0
-  possibleExceptions:
-  - {fileID: 11400000, guid: c86d879d4af6b464e826cf7ca08e1f5b, type: 2}
+  possibleExceptions: []

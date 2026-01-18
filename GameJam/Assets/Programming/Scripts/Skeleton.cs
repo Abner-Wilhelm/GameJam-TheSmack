@@ -39,6 +39,7 @@ public class Skeleton : RoomEntity
     }
     public override void Choice(bool isCorrectChoice)
     {
+        base.Choice(isCorrectChoice);
         if (isLiving)
         {
                 sisterMesh.GetComponent<RoomEntity>().hasBeenInteractedWith = true;
