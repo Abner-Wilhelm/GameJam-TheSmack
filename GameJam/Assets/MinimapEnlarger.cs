@@ -8,7 +8,7 @@ public class MinimapEnlarger : MonoBehaviour
     public RectTransform miniMap;
 
     private Vector3 minimapStartingScale;
-    public Vector3 enlargedScale = new Vector3(2f, 2f, 2f);
+    public Vector3 enlargedScale;
 
     public Vector2 miniMapStartPos;
     public Vector2 miniMapEndPos;
@@ -28,6 +28,7 @@ public class MinimapEnlarger : MonoBehaviour
 
     private void Update()
     {
+        if(!PlayerInteraction.Instance.canTab) return;
         bool enlarge = Input.GetKey(KeyCode.Tab);
 
         Vector2 targetPos = enlarge ? miniMapEndPos : miniMapStartPos;

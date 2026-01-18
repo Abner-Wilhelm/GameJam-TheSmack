@@ -6,14 +6,14 @@ using UnityEngine;
 public class RoomInfo : ScriptableObject
 {
     public string roomName;
-    public int roomLevel;
+    public string roomLevel;
     public string ruleToAdd;
     public RuleBreakCondition ruleCondition;
     public RuleBreakException ruleException;
 
     public string GetRoomDisplayName()
     {
-       return ("Level " + roomLevel + ": " + roomName);
+        return roomName;
     }
 
     public void AddRule()

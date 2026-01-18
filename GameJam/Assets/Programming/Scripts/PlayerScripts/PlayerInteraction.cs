@@ -15,6 +15,21 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject approvedSprite;
     public GameObject deniedSprite;
 
+    public static PlayerInteraction Instance;
+    public bool canTab = true;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     public float interactDistance = 3f;
     void Update()
     {
@@ -29,9 +44,13 @@ public class PlayerInteraction : MonoBehaviour
             if (hit.collider.TryGetComponent(out RoomEntity entity))
             {
                 entity.ShowLevelDisplay(true);
+                entity.isBeingLookedAt(true);
 
                 if (lastLookedAtObj && lastLookedAtObj != entity)
+                {
                     lastLookedAtObj.ShowLevelDisplay(false);
+                    lastLookedAtObj.isBeingLookedAt(false);
+                }
 
                 lastLookedAtObj = entity;
 
@@ -56,6 +75,7 @@ public class PlayerInteraction : MonoBehaviour
 
                 if (lastLookedAtObj)
                 {
+                    lastLookedAtObj.isBeingLookedAt(false);
                     lastLookedAtObj.ShowLevelDisplay(false);
                     lastLookedAtObj = null;
                 }
@@ -80,6 +100,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (lastLookedAtObj)
             {
+                lastLookedAtObj.isBeingLookedAt(false);
                 lastLookedAtObj.ShowLevelDisplay(false);
                 lastLookedAtObj = null;
             }
