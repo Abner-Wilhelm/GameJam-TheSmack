@@ -86,6 +86,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (!roomEntity.hasBeenInteractedWith)
             {
+                MangledHandController.Instance.Stamp();
                 SpawnSprite(hit.point, hit.normal, inputType);
             }
         }
@@ -104,9 +105,10 @@ public class PlayerInteraction : MonoBehaviour
         lastLookedAtObj = null;
     }
 
+    //Trying to spawn the sprite as close to the surface as possible without clipping through it
     private void SpawnSprite(Vector3 position, Vector3 forward, int input)
     {
         GameObject spriteToSpawn = input == LEFT_MOUSE_INPUT ? approvedSprite : deniedSprite;
-        Instantiate(spriteToSpawn, position + forward * 1.5f, Quaternion.LookRotation(forward));
+        GameObject spriteInstance = Instantiate(spriteToSpawn, position + forward * 0.01f, Quaternion.LookRotation(-forward));
     }
 }
