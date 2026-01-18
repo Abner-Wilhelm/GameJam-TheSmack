@@ -33,6 +33,10 @@ public class ButtonController : MonoBehaviour
                 timer = Random.Range(0.5f, 2);
             }
         }
+        else
+        {
+            Debug.Log("Not Flashing");
+        }
     }
 
     IEnumerator FlashgRenderers(MeshRenderer renderer)

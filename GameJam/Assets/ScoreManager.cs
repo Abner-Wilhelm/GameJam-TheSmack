@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI entitiesNotInspected;
     public TextMeshProUGUI InaccurateInspections;
     public TextMeshProUGUI finalScore;
+
+    public VideoPlayer videoPlayer;
+
+    public GameObject elevatorDoorL;
+    public GameObject elevatorDoorR;
 
     private void Awake()
     {
@@ -60,12 +66,32 @@ public class ScoreManager : MonoBehaviour
 
     public void GameEnd()
     {
+        SoundManager.Instance.musicSource.Stop();
+        SoundManager.Instance.musicSource.clip = SoundManager.Instance.elevatorNoises;
+        SoundManager.Instance.musicSource.Play();
+        StartCoroutine(CloseElevatorDoors());
+        videoPlayer.Play();
         CalculateScore();
         StartCoroutine(LerpPerformanceReviewIn());
     }
 
-    IEnumerator LerpPerformanceReviewIn()
+    // bring both the left and right elevator doors to the x position of 0 over 2 seconds
+    IEnumerator CloseElevatorDoors()
     {
+        float duration = 2f; // Duration of the lerp effect
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            elevatorDoorL.transform.localPosition = Vector3.Lerp(elevatorDoorL.transform.localPosition, new Vector3(0, 0, 0), elapsed / duration);
+            elevatorDoorR.transform.localPosition = Vector3.Lerp(elevatorDoorR.transform.localPosition, new Vector3(0, 0, 0), elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+        IEnumerator LerpPerformanceReviewIn()
+    {
+        yield return new WaitForSeconds(26f); // Wait for 3 seconds before starting the lerp
         float duration = 3f; // Duration of the lerp effect
         float elapsed = 0.0f;
         Vector2 originalPosition = performanceReview.rectTransform.anchoredPosition;

@@ -49,12 +49,16 @@ public class MainMenuManager : MonoBehaviour
 
     private IEnumerator StartGameCoroutine()
     {
-        MinimapEnlarger.Instance.minimapObj.SetActive(true);
+        mainMenuUI.SetActive(false);
         PlayerMovement.Instance.isFrozen = false;
         PlayerCam.Instance.LockCursor();
         mainMenuCamera.Priority = 0;
-        mainMenuUI.SetActive(false);
+        yield return new WaitForSeconds(1.5f);
+        VideoPlayer.Play();
 
+        yield return new WaitForSeconds(69f);
+        SoundManager.Instance.musicSource.clip = SoundManager.Instance.music;
+        SoundManager.Instance.musicSource.Play();
         float elapsedTime = 0f;
         float duration = 2f;
         while (elapsedTime < duration)
@@ -65,12 +69,11 @@ public class MainMenuManager : MonoBehaviour
             rightDoor.transform.localPosition = new Vector3(Mathf.Lerp(rightDoor.transform.localPosition.x, 1f, t), rightDoor.transform.localPosition.y, rightDoor.transform.localPosition.z);
             yield return null;
         }
-
-        VideoPlayer.Play();
-
+        MinimapEnlarger.Instance.minimapObj.SetActive(true);
         elevatorButtons.isFlashing = false;
         numberPlateController.elevatorStopped = true;
+    
 
-        
+
     }
 }

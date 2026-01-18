@@ -26,4 +26,6 @@ public class SoundManager : MonoBehaviour
     public AudioClip stampSound;
     public AudioClip elevatorNoises;
     public AudioClip music;
+    public AudioClip transitionSound;
+    public AudioClip roomTitle;
 }

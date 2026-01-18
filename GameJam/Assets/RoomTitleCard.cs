@@ -55,6 +55,7 @@ public class RoomTitleCard : MonoBehaviour
     public void ShowTitleCard(RoomInfo roomInfo)
     {
         StartCoroutine(DisplayTitleCard(roomInfo));
+        SoundManager.Instance.sfxSource.PlayOneShot(SoundManager.Instance.roomTitle);
     }
 
     //First displaythe center of the title card with the room name, then move it to the idle position
@@ -79,7 +80,7 @@ public class RoomTitleCard : MonoBehaviour
 
         //shake text effect
         elapsedTime = 0f;
-        while (elapsedTime < 1f)
+        while (elapsedTime < 2f)
         {
             rt.anchoredPosition += new Vector2(Random.Range(-2f, 2f), Random.Range(-2f, 2f));
             elapsedTime += Time.deltaTime;

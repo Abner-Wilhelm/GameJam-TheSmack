@@ -47,6 +47,7 @@ public class DoorScript : MonoBehaviour, IInteractable
         FadeToBlackManager.Instance.FadeToBlack(true, 0.5f);
         MinimapEnlarger.Instance.minimapObj.SetActive(false);
         yield return new WaitForSeconds(0.5f);
+        SoundManager.Instance.sfxSource.PlayOneShot(SoundManager.Instance.transitionSound);
         TransitionCutscene.Instance.PlayCutscene();
         playerCam.GetComponent<CinemachineVirtualCamera>().Priority = 0;
         FadeToBlackManager.Instance.FadeToBlack(false, 0.5f);
