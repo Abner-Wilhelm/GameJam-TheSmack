@@ -45,7 +45,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.75322974, b: 0, a: 1}
-  m_Intensity: 6.77
+  m_Intensity: 4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -203,7 +203,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 47517a875550ff247aecef668c360094,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.291
+      value: 5.48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47517a875550ff247aecef668c360094,
         type: 3}
@@ -213,7 +213,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 47517a875550ff247aecef668c360094,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.24
+      value: 5.818
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47517a875550ff247aecef668c360094,
         type: 3}
