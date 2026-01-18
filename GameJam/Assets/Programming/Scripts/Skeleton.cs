@@ -18,9 +18,17 @@ public class Skeleton : RoomEntity
         if (isBeingLookedAt && !hasBeenInteractedWith && isLiving)
         {
             Material mat;
-            
-            
+            if (sisterMesh.GetComponent<RoomEntity>().overrideMaterial)
+            {
+                mat = sisterMesh.GetComponent<MeshRenderer>().materials[sisterMesh.GetComponent<RoomEntity>().overrideMaterialIndex];
+            }
+            else
+            {
                 mat = sisterMesh.GetComponent<MeshRenderer>().material;
+            }
+
+
+               
             
             mat.SetColor("_OutlineColor", highlightColor);
         }
