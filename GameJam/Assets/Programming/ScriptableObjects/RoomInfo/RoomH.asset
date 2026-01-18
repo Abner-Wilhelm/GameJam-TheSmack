@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9676810a7ed348c41a073664d474249c, type: 3}
   m_Name: RoomH
   m_EditorClassIdentifier: 
-  roomName: Colin's Room
-  roomLevel: 12
-  ruleToAdd: 
+  roomName: Dead Guy Zone
+  roomLevel: 88
+  ruleToAdd: Dungeon staff may participate in hallucinogens only on Wednesdays
   ruleCondition: {fileID: 0}
-  ruleException: {fileID: 0}
-  hasBeenAdded: 0
+  ruleException: {fileID: 11400000, guid: c86d879d4af6b464e826cf7ca08e1f5b, type: 2}
+  hasBeenAdded: 1
