@@ -60,6 +60,7 @@ public class Skeleton : RoomEntity
             }
             else
             {
+                SoundManager.Instance.sfxSource.PlayOneShot(SoundManager.Instance.explosion);
                 explodeMesh.SetActive(true);
                 sisterMesh.SetActive(false);
                 regularMesh.SetActive(false) ;

@@ -44,7 +44,7 @@ public class MangledHandController : MonoBehaviour
 
     IEnumerator StampCoroutine()
     {
-        
+        SoundManager.Instance.sfxSource.PlayOneShot(SoundManager.Instance.stampSound);
         Quaternion startRotation = hand.transform.localRotation;
         Quaternion midRotation = Quaternion.Euler(-120f, hand.transform.localRotation.eulerAngles.y, hand.transform.localRotation.eulerAngles.z);
         Quaternion endRotation = Quaternion.Euler(-20f, hand.transform.localRotation.eulerAngles.y, hand.transform.localRotation.eulerAngles.z);

@@ -12,15 +12,42 @@ public class PlayerCam : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    public static PlayerCam Instance;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private void Start()
     {
-       Cursor.lockState = CursorLockMode.Locked;
+      /* Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;*/
+    }
+
+    public void LockCursor()
+    {
+               Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void UnlockCursor()
+    {
+               Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void Update()
     {
         //get mouse input
+        if(PlayerMovement.Instance.isFrozen) return;
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 

@@ -40,6 +40,7 @@ public class MinimapEnlarger : MonoBehaviour
     {
         minimapStartingScale = miniMap.localScale;
         originalOrthographicSize = minimapCamera.orthographicSize;
+        minimapObj.SetActive(false);
     }
 
     private void Update()

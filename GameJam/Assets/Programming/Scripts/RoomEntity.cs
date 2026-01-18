@@ -22,12 +22,37 @@ public class RoomEntity : MonoBehaviour, IInteractable
 
     public virtual void Choice(bool isCorrectChoice)
     {
+        if (SoundManager.Instance == null)
+        {
+            Debug.LogError("SoundManager.Instance is null!");
+            return;
+        }
+
+        if (SoundManager.Instance.sfxSource == null)
+        {
+            Debug.LogError("SoundManager.Instance.sfxSource is null!");
+            return;
+        }
+
         if (isCorrectChoice)
         {
-            Debug.Log("Confetti! You followed the rules!");
+            if (SoundManager.Instance.correctSound == null)
+            {
+                Debug.LogError("SoundManager.Instance.correctSound is null!");
+                return;
+            }
+
+            SoundManager.Instance.sfxSource.PlayOneShot(SoundManager.Instance.correctSound);
         }
         else
         {
+            if (SoundManager.Instance.incorrectSound == null)
+            {
+                Debug.LogError("SoundManager.Instance.incorrectSound is null!");
+                return;
+            }
+
+            SoundManager.Instance.sfxSource.PlayOneShot(SoundManager.Instance.incorrectSound);
             ScoreManager.Instance.mistakes++;
         }
     }
@@ -39,7 +64,12 @@ public class RoomEntity : MonoBehaviour, IInteractable
         {
             hasBeenInteractedWith = true;
             ChangeMaterialOutline();
-            if (RuleManager.Instance.CompareRuleConditions(ruleObject))
+            if (ruleObject.Count == 0)
+            {
+                Choice(true);
+                return;
+            }
+            if (!RuleManager.Instance.CompareRuleConditions(ruleObject))
             {
                 Choice(true);
                 
@@ -53,7 +83,12 @@ public class RoomEntity : MonoBehaviour, IInteractable
         {
             hasBeenInteractedWith = true;
             ChangeMaterialOutline();
-            if (!RuleManager.Instance.CompareRuleConditions(ruleObject))
+            if(ruleObject.Count == 0)
+            {
+                Choice(false);
+                return;
+            }
+            if (RuleManager.Instance.CompareRuleConditions(ruleObject))
             {
                 Choice(true);
             }
