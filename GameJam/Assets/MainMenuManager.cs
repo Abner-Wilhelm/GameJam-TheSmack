@@ -33,8 +33,24 @@ public class MainMenuManager : MonoBehaviour
 
     private IEnumerator StartGameCoroutine()
     {
-       
+       PlayerMovement.Instance.isFrozen = false;
+        PlayerCam.Instance.LockCursor();
+        mainMenuCamera.Priority = 0;
+        mainMenuUI.SetActive(false);
 
-        yield return null;
+        //left door -1 in the x direction
+        //right door +1 in the x direction
+
+        float elapsedTime = 0f;
+        float duration = 2f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+            leftDoor.transform.localPosition = new Vector3(Mathf.Lerp(leftDoor.transform.localPosition.x, -1f, t), leftDoor.transform.localPosition.y, leftDoor.transform.localPosition.z);
+            rightDoor.transform.localPosition = new Vector3(Mathf.Lerp(rightDoor.transform.localPosition.x, 1f, t), rightDoor.transform.localPosition.y, rightDoor.transform.localPosition.z);
+            yield return null;
+        }
+
     }
 }
