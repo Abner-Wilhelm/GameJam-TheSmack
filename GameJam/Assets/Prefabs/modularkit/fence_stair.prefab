@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence_stair
       objectReference: {fileID: 0}
+    - target: {fileID: 7338527049264025885, guid: 28ec903d157d43a4183d2582e267737d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 709b9d0208e13994da378d3890128c3c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
