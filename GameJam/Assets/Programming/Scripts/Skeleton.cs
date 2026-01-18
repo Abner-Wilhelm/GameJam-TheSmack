@@ -26,9 +26,6 @@ public class Skeleton : RoomEntity
             {
                 mat = sisterMesh.GetComponent<MeshRenderer>().material;
             }
-
-
-               
             
             mat.SetColor("_OutlineColor", highlightColor);
         }

@@ -94,4 +94,11 @@ public class ClipboardController : MonoBehaviour
         clipboard.transform.position = clipboardIdle.position;
         clipboard.transform.rotation = clipboardIdle.rotation;
     }
+
+    public void TeleportPlayer(Transform teleportTransform)
+    {
+        Debug.Log($"Teleporting player to: {teleportTransform.position}");
+        gameObject.transform.position = teleportTransform.position;
+        Debug.Log($"Player position after teleport: {gameObject.transform.position}");
+    }
 }

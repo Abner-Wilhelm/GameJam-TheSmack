@@ -6,7 +6,26 @@ using UnityEngine.Playables;
 
 public class TransitionCutscene : MonoBehaviour
 {
+    public static TransitionCutscene Instance;
     PlayableDirector director;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void PlayCutscene()
+    {
+        director.Play();
+    }
+
     // Start is called before the first frame update
     void Start()
     {

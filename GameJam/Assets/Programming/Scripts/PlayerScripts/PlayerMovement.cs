@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,22 @@ public class PlayerMovement : MonoBehaviour
 
     float horizontalInput;
     float verticalInput;
+
+    public static PlayerMovement Instance;
+
+    public bool isFrozen = false;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+}
+    }
 
     Vector3 moveDir;
 
@@ -29,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isFrozen)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
         MyInput();
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -38,6 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(isFrozen)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
         MovePlayer();
     }
 
@@ -46,5 +73,10 @@ public class PlayerMovement : MonoBehaviour
         moveDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         rb.AddForce(moveDir.normalized * moveSpeed, ForceMode.Force);
+    }
+
+    internal void TeleportToPoint(Transform teleportTransform)
+    {
+       transform.position = teleportTransform.position;
     }
 }

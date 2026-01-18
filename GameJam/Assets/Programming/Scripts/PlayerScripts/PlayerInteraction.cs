@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-
 public class PlayerInteraction : MonoBehaviour
 {
     public const int LEFT_MOUSE_INPUT = 0;
     public const int RIGHT_MOUSE_INPUT = 1;
 
-    public RoomEntity lastLookedAtObj;
+    public IInteractable lastLookedAtObj;
 
     public GameObject approvedSprite;
     public GameObject deniedSprite;
@@ -31,85 +30,83 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public float interactDistance = 3f;
+
     void Update()
     {
-
-
         Ray ray = new Ray(transform.position, transform.forward); // on Camera
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, interactDistance))
         {
-
-            if (hit.collider.TryGetComponent(out RoomEntity entity))
+            if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                entity.ShowLevelDisplay(true);
-                entity.isBeingLookedAt(true);
-
-                if (lastLookedAtObj && lastLookedAtObj != entity)
+                if (lastLookedAtObj != null && lastLookedAtObj != interactable)
                 {
-                    lastLookedAtObj.ShowLevelDisplay(false);
-                    lastLookedAtObj.isBeingLookedAt(false);
+                    // Reset the previous object if it's a RoomEntity
+                    if (lastLookedAtObj is RoomEntity lastRoomEntity)
+                    {
+                        lastRoomEntity.ShowLevelDisplay(false);
+                        lastRoomEntity.isBeingLookedAt(false);
+                    }
                 }
 
-                lastLookedAtObj = entity;
-
-                if (Input.GetKeyDown(KeyCode.Mouse0) && hit.collider.TryGetComponent(out IInteractable i0))
+                // Update the current object
+                if (interactable is RoomEntity roomEntity)
                 {
-                    if (!entity.hasBeenInteractedWith)
-                        SpawnSprite(this.transform.position, this.transform.forward, PlayerInteraction.LEFT_MOUSE_INPUT);
-                    i0.Interact(PlayerInteraction.LEFT_MOUSE_INPUT);
-
-                }
-                else if (Input.GetKeyDown(KeyCode.Mouse1) && hit.collider.TryGetComponent(out IInteractable i1))
-                {
-                    if (!entity.hasBeenInteractedWith)
-                        SpawnSprite(this.transform.position, this.transform.forward, PlayerInteraction.RIGHT_MOUSE_INPUT);
-                    i1.Interact(PlayerInteraction.RIGHT_MOUSE_INPUT);
-
+                    roomEntity.ShowLevelDisplay(true);
+                    roomEntity.isBeingLookedAt(true);
                 }
 
+                lastLookedAtObj = interactable;
+
+                // Handle interaction input
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    HandleInteraction(interactable, LEFT_MOUSE_INPUT, hit);
+                }
+                else if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    HandleInteraction(interactable, RIGHT_MOUSE_INPUT, hit);
+                }
             }
             else
             {
-
-                if (lastLookedAtObj)
-                {
-                    lastLookedAtObj.isBeingLookedAt(false);
-                    lastLookedAtObj.ShowLevelDisplay(false);
-                    lastLookedAtObj = null;
-                }
-
-                if (Input.GetKeyDown(KeyCode.Mouse0) && hit.collider.TryGetComponent(out IInteractable i0))
-                {
-                    if (!entity.hasBeenInteractedWith)
-                        SpawnSprite(this.transform.position, this.transform.forward, PlayerInteraction.LEFT_MOUSE_INPUT);
-                    i0.Interact(PlayerInteraction.LEFT_MOUSE_INPUT);
-                    
-                }
-                else if (Input.GetKeyDown(KeyCode.Mouse1) && hit.collider.TryGetComponent(out IInteractable i1))
-                {
-                    if (!entity.hasBeenInteractedWith)
-                        SpawnSprite(hit.transform.position, hit.transform.forward, PlayerInteraction.RIGHT_MOUSE_INPUT);
-                    i1.Interact(PlayerInteraction.RIGHT_MOUSE_INPUT);
-                   
-                }
+                ResetLastLookedAtObj();
             }
         }
         else
         {
-            if (lastLookedAtObj)
+            ResetLastLookedAtObj();
+        }
+    }
+
+    private void HandleInteraction(IInteractable interactable, int inputType, RaycastHit hit)
+    {
+        if (interactable is RoomEntity roomEntity)
+        {
+            if (!roomEntity.hasBeenInteractedWith)
             {
-                lastLookedAtObj.isBeingLookedAt(false);
-                lastLookedAtObj.ShowLevelDisplay(false);
-                lastLookedAtObj = null;
+                SpawnSprite(hit.point, hit.normal, inputType);
             }
         }
+
+        interactable.Interact(inputType);
+    }
+
+    private void ResetLastLookedAtObj()
+    {
+        if (lastLookedAtObj != null && lastLookedAtObj is RoomEntity lastRoomEntity)
+        {
+            lastRoomEntity.ShowLevelDisplay(false);
+            lastRoomEntity.isBeingLookedAt(false);
+        }
+
+        lastLookedAtObj = null;
     }
 
     private void SpawnSprite(Vector3 position, Vector3 forward, int input)
     {
-        GameObject spriteToSpawn = input == PlayerInteraction.LEFT_MOUSE_INPUT ? approvedSprite : deniedSprite;
+        GameObject spriteToSpawn = input == LEFT_MOUSE_INPUT ? approvedSprite : deniedSprite;
         Instantiate(spriteToSpawn, position + forward * 1.5f, Quaternion.LookRotation(forward));
     }
 }
