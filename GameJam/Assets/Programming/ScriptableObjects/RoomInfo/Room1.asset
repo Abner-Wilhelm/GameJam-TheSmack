@@ -17,3 +17,4 @@ MonoBehaviour:
   ruleToAdd: Monsters must use professional behavior
   ruleCondition: {fileID: 11400000, guid: d173b78641db4f74aa973d910f24bb72, type: 2}
   ruleException: {fileID: 0}
+  hasBeenAdded: 0

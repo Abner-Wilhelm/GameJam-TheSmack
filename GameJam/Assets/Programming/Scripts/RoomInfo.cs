@@ -11,6 +11,8 @@ public class RoomInfo : ScriptableObject
     public RuleBreakCondition ruleCondition;
     public RuleBreakException ruleException;
 
+    public bool hasBeenAdded = false;
+
     public string GetRoomDisplayName()
     {
         return roomName;
@@ -18,8 +20,9 @@ public class RoomInfo : ScriptableObject
 
     public void AddRule()
     {
-        if (!string.IsNullOrEmpty(ruleToAdd))
+        if (!string.IsNullOrEmpty(ruleToAdd) && !hasBeenAdded)
         {
+            hasBeenAdded = true;
             ClipboardController.Instance.StartCoroutine(ClipboardController.Instance.lookAtClipBoard(ruleToAdd));
             if (ruleCondition) RuleManager.Instance.AddRuleCondition(ruleCondition);
             if(ruleException) RuleManager.Instance.AddRuleException(ruleException);
