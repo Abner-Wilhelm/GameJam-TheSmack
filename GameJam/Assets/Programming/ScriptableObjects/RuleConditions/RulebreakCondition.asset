@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2815c65ff32090d47b50c9c74c0c8342, type: 3}
-  m_Name: BreakingRules
+  m_Script: {fileID: 11500000, guid: 35de72fef3164ad4494d6b587f3d0214, type: 3}
+  m_Name: RulebreakCondition
   m_EditorClassIdentifier: 
-  ruleConditions:
-  - {fileID: 11400000, guid: d173b78641db4f74aa973d910f24bb72, type: 2}
+  ruleName: Unprofessionality
+  ruleConditionType: 0
+  possibleExceptions: []
