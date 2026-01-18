@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(RuntimeMaterialInstancer))]
 public class RoomEntity : MonoBehaviour, IInteractable
 {
-    public RuleObject ruleObject;
+    public List<RuleBreakCondition> ruleObject = new List<RuleBreakCondition>();
     public GameObject levelDisplay;
 
     public Color highlightColor = Color.green;
@@ -28,7 +28,7 @@ public class RoomEntity : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.Log("BOOOOOOOOOOOOOO");
+            ScoreManager.Instance.mistakes++;
         }
     }
 
@@ -39,7 +39,7 @@ public class RoomEntity : MonoBehaviour, IInteractable
         {
             hasBeenInteractedWith = true;
             ChangeMaterialOutline();
-            if (ruleObject.IsFollowingRules())
+            if (RuleManager.Instance.CompareRuleConditions(ruleObject))
             {
                 Choice(true);
                 
@@ -53,7 +53,7 @@ public class RoomEntity : MonoBehaviour, IInteractable
         {
             hasBeenInteractedWith = true;
             ChangeMaterialOutline();
-            if (!ruleObject.IsFollowingRules())
+            if (!RuleManager.Instance.CompareRuleConditions(ruleObject))
             {
                 Choice(true);
             }
@@ -62,6 +62,12 @@ public class RoomEntity : MonoBehaviour, IInteractable
                 Choice(false);
             }
         }
+    }
+
+    public bool FollowingAllRules()
+    {
+        RuleManager.Instance.CompareRuleConditions(ruleObject);
+        return true;
     }
 
     public void ChangeMaterialOutline()
