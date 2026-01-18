@@ -145,8 +145,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _AmbientLight: {r: 0.25490198, g: 0.43529412, b: 0.4187941, a: 1}
-    - _BaseColor: {r: 0.5444001, g: 0.60018957, b: 0.87169814, a: 1}
+    - _AmbientLight: {r: 0.40185338, g: 0.30768952, b: 0.4867924, a: 1}
+    - _BaseColor: {r: 0.6781844, g: 0.76775664, b: 0.83396226, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeHighlightColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0.6431373}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
