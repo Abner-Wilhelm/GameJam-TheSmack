@@ -17,6 +17,8 @@ public class PlayerInteraction : MonoBehaviour
     public static PlayerInteraction Instance;
     public bool canTab = true;
 
+    public GameObject confettiVFX;
+
     private void Awake()
     {
         if (Instance == null)
@@ -110,5 +112,10 @@ public class PlayerInteraction : MonoBehaviour
     {
         GameObject spriteToSpawn = input == LEFT_MOUSE_INPUT ? approvedSprite : deniedSprite;
         GameObject spriteInstance = Instantiate(spriteToSpawn, position + forward * 0.01f, Quaternion.LookRotation(-forward));
+    }
+
+    internal void SpawnConfetti(Vector3 vector3)
+    {
+        GameObject confettiInstance = Instantiate(confettiVFX, vector3, Quaternion.identity);
     }
 }

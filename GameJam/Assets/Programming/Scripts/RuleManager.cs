@@ -69,7 +69,10 @@ public class RuleManager : MonoBehaviour
             if (activeRuleExceptions.Count == 0)
             {
                 if (activeRuleConditions.Contains(condition))
-                { return false; }
+                { 
+                    Debug.Log("Condition broken: ");
+                    return false; 
+                }
             }
 
             else

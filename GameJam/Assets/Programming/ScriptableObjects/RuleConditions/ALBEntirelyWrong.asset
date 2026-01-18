@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ruleName: Unbalanced ALB
   ruleConditionType: 3
-  possibleExceptions:
-  - {fileID: 11400000, guid: 901d4ff93e3508e4fbddf553699766b4, type: 2}
+  possibleExceptions: []

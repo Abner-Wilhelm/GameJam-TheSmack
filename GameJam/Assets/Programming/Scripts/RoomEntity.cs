@@ -41,7 +41,7 @@ public class RoomEntity : MonoBehaviour, IInteractable
                 Debug.LogError("SoundManager.Instance.correctSound is null!");
                 return;
             }
-
+            PlayerInteraction.Instance.SpawnConfetti(this.transform.position + Vector3.up * 1.5f);
             SoundManager.Instance.sfxSource.PlayOneShot(SoundManager.Instance.correctSound);
         }
         else
@@ -88,7 +88,7 @@ public class RoomEntity : MonoBehaviour, IInteractable
                 Choice(false);
                 return;
             }
-            if (RuleManager.Instance.CompareRuleConditions(ruleObject))
+            if (!RuleManager.Instance.CompareRuleConditions(ruleObject))
             {
                 Choice(true);
             }
