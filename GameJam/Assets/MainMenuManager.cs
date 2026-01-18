@@ -49,7 +49,8 @@ public class MainMenuManager : MonoBehaviour
 
     private IEnumerator StartGameCoroutine()
     {
-       PlayerMovement.Instance.isFrozen = false;
+        MinimapEnlarger.Instance.minimapObj.SetActive(true);
+        PlayerMovement.Instance.isFrozen = false;
         PlayerCam.Instance.LockCursor();
         mainMenuCamera.Priority = 0;
         mainMenuUI.SetActive(false);
@@ -69,7 +70,7 @@ public class MainMenuManager : MonoBehaviour
 
         elevatorButtons.isFlashing = false;
         numberPlateController.elevatorStopped = true;
-        MinimapEnlarger.Instance.minimapObj.SetActive(true);
+
         
     }
 }

@@ -69,7 +69,7 @@ public class RoomEntity : MonoBehaviour, IInteractable
                 Choice(true);
                 return;
             }
-            if (!RuleManager.Instance.CompareRuleConditions(ruleObject))
+            if (RuleManager.Instance.CompareRuleConditions(ruleObject))
             {
                 Choice(true);
                 

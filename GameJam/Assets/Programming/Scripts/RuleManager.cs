@@ -70,7 +70,7 @@ public class RuleManager : MonoBehaviour
             {
                 if (activeRuleConditions.Contains(condition))
                 { 
-                    Debug.Log("Condition broken: ");
+                    Debug.Log("Condition broken: at line 73");
                     return false; 
                 }
             }
@@ -83,13 +83,17 @@ public class RuleManager : MonoBehaviour
                     {
                         if (activeRuleConditions.Contains(condition) && !activeRuleExceptions.Contains(exception))
                         {
+                            Debug.Log("Condition broken: at line 84");
                             return false;
                         }
                     }
                     else
                     {
                         if (activeRuleConditions.Contains(condition))
-                        { return false; }
+                        {
+                            Debug.Log("Condition broken: at line 88");
+                            return false;
+                        }
                     }
                 }
             }
