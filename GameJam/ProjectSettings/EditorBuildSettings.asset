@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/BlockouAbner.unity
+  - enabled: 0
+    path: Assets/Scenes/WOKINGCOPY.unity
     guid: 6f40270564bbff243b204dd10e61d301
+  - enabled: 1
+    path: Assets/Scenes/WorkingIshMainMenu.unity
+    guid: b7eb4db438df2274e84afc76fa4d0f82
   m_configObjects: {}
